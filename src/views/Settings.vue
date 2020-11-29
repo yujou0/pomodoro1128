@@ -3,7 +3,10 @@
    b-container
      b-row
        b-col(cols="12")
-         b-table(:items="items")
+         b-table(:items="items"  :fields="fields")
+           template(#cell(file)="data")
+             audio(controls :src="'./sounds/'+data.item.file")
+           template(#cell(select)="data")
 </template>
 
 <script>
@@ -14,11 +17,25 @@ export default {
       items: [
         {
           name: '鬧鈴',
-          file: 'alarm.mp3'
+          file: 'alarm1.mp3'
         },
         {
           name: 'yay',
           file: 'yay.mp3'
+        }
+      ],
+      fields: [
+        {
+          key: 'name',
+          label: '名稱'
+        },
+        {
+          key: 'file',
+          label: '預覽'
+        },
+        {
+          key: 'select',
+          label: '選擇'
         }
       ]
     }
