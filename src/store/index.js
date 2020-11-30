@@ -17,9 +17,23 @@ export default new Vuex.Store({
         {
           name: data,
           edit: false,
-          medel: data
+          model: data
         }
       )
+    },
+    delTodo (state, index) {
+      state.todos.splice(index, 1)
+    },
+    editTodo (state, index) {
+      state.todos[index].edit = true
+    },
+    changeTodo (state, index) {
+      state.todos[index].edit = false
+      state.todos[index].name = state.todos[index].model
+    },
+    cancelTodo (state, index) {
+      state.todos[index].edit = false
+      state.todos[index].model = state.todos[index].name
     }
   },
   actions: {
