@@ -13,6 +13,7 @@
     "@fortawesome/vue-fontawesome": "^2.0.0",
     "bootstrap-vue": "^2.17.3",
     "core-js": "^3.6.5",
+    "dotenv": "^8.2.0",
     "pug": "^2.0.1",
     "pug-plain-loader": "^1.0.0",
     "register-service-worker": "^1.7.1",
