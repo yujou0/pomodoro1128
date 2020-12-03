@@ -1,32 +1,32 @@
 <template lang="pug">
- #list
-   b-container
-     b-row
-       b-col(col="12")
-         b-form-group(label="新增事項" invalid-feedback="請至少輸入兩個字" :state="state")
-           b-form-input(v-model="newtodo" trim :state="state" @keydown.enter="addTodo")
-         b-btn(variant="primary" @click="addTodo") 新增
-         b-table(:items="todos" :fields="fields")
-           template(#cell(name)="data")
-             b-form-input(
-               v-if="data.item.edit"
-               v-model="data.item.model"
-               trim
-               state="stateTodo(data.item.model)"
-               @keydown.enter="changeTodo(data.index)"
-             )
-             span(v-else) {{ data.item.name }}
-           template(#cell(action)="data")
-             span(v-if="data.item.edit")
-               b-btn(variant="success" @click="changeTodo(data.index)")
-                 font-awesome-icon(:icon="['fas', 'save']")
-               b-btn(variant="danger" @click="cancelTodo(data.index)")
-                 font-awesome-icon(:icon="['fas', 'undo-alt']")
-             span(v-else)
-               b-btn(variant="primary" @click="editTodo(data.index)")
-                 font-awesome-icon(:icon="['fas', 'pen-alt']")
-               b-btn(variant="danger" @click="delTodo(data.index)")
-                 font-awesome-icon(:icon="['fas', 'times-circle']")
+  #list
+    b-container
+      b-row
+        b-col(cols="12")
+          b-form-group(label="新增事項" invalid-feedback="請至少輸入兩個字" :state="state")
+            b-form-input(v-model="newtodo" trim :state="state" @keydown.enter="addTodo")
+          b-btn(variant="dark" @click="addTodo") 新增
+          b-table(:items="todos" :fields="fields")
+            template(#cell(name)="data")
+              b-form-input(
+                v-if="data.item.edit"
+                v-model="data.item.model"
+                trim
+                :state="stateTodo(data.item.model)"
+                @keydown.enter="changeTodo(data.index)"
+              )
+              span(v-else) {{ data.item.name }}
+            template(#cell(action)="data")
+              span(v-if="data.item.edit")
+                b-btn(variant="danger" @click="changeTodo(data.index)")
+                  font-awesome-icon(:icon="['fas', 'check']")
+                b-btn(variant="danger" @click="cancelTodo(data.index)")
+                  font-awesome-icon(:icon="['fas', 'undo']")
+              span(v-else)
+                b-btn(variant="danger" @click="editTodo(data.index)")
+                  font-awesome-icon(:icon="['fas', 'pen']")
+                b-btn(variant="danger" @click="delTodo(data.index)")
+                  font-awesome-icon(:icon="['fas', 'times']")
 </template>
 
 <script>
@@ -75,9 +75,7 @@ export default {
       this.$store.commit('editTodo', index)
     },
     stateTodo (data) {
-      if (data === 0) {
-        return null
-      } else if (data < 2) {
+      if (data.length < 2) {
         return false
       } else {
         return true
