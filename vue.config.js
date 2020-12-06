@@ -5,7 +5,7 @@ module.exports = {
     manifestOptions: {
       // APP 名稱
       name: '番茄鐘',
-      short_name: 'My app',
+      short_name: '番茄鐘',
       // APP 主題顏色
       theme_color: '#B2CAD5',
       // APP 啟動畫面背景色
